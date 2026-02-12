@@ -1,6 +1,6 @@
 {
-  "name": "Python (CPU)",
-  "image": "ubuntu:22.04",
+  "name": "Python (CUDA)",
+  "image": "nvcr.io/nvidia/cuda:12.6.3-cudnn-devel-ubuntu24.04",
   // Feature configurations
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2": {
@@ -16,7 +16,7 @@
   // These commands run each time the container is attached.
   "postAttachCommand": {
     // Synchronize uv environment (if uv.lock exists)
-    "uv-sync": "test -f uv.lock && uv sync --locked || echo 'No uv.lock file found, skipping uv sync.'"
+    "uv-sync": "test -f uv.lock && uv sync --locked --extra cuda || echo 'No uv.lock file found, skipping uv sync.'"
     // Other attach-time commands can be added here
   },
   "customizations": {
@@ -27,5 +27,9 @@
         "ms-toolsai.jupyter"
       ]
     }
-  }
+  },
+  "runArgs": [
+    "--gpus",
+    "all"
+  ]
 }
