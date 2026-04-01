@@ -1,0 +1,8 @@
+jax
+numpy
+matplotlib
+ipykernel
+jupyter
+scikit-learn
+pandas
+scipy
